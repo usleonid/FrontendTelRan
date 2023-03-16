@@ -25,7 +25,7 @@ table, th, td {
   }
 
 table {
-    border-collapse: collapse;
+    border-collapse: collapse 3px;
   }
 
 th {
@@ -59,4 +59,8 @@ tr.five {
 tr.six {
     background-color: black;
     color: white;
+}
+
+a {
+    text-decoration: none;
 }
