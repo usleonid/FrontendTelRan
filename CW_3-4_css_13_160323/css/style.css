@@ -1,9 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Covered+By+Your+Grace&family=Raleway:wght@300;400;500;600&display=swap');
+
 h1 {
     text-align: center;
-    font-size: 100px;
-    /* display: table-cell;
-    vertical-align: middle; */
+    font-size: 90px;
+    display: table-cell;
+    vertical-align: middle;
     color: rgb(70, 8, 8);
+    font-family: 'Covered By Your Grace', cursive;
 }
 
 .header {
@@ -11,30 +14,33 @@ h1 {
     height: 300px;
     background-position: center;
     background-repeat: no-repeat;
-    /* display: table;
-    text-align: center; */
-    display: flex;
+    display: table;
+    text-align: center;
+    /* display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: center; */
     width: 100%;
 }
 
 * {
     margin: 0;
+    padding: 0;
 }
 
 body {
     background-color: rgb(246, 230, 230);
+    font-family: 'Raleway', sans-serif;
 }
 
 ul {
     list-style-type: none; /* delete dots */
     margin-top: 20px;
     padding-right: 40px;
+    padding-left: 40px;
 }
 
 li {
-    margin-top: 15px;
+    margin-top: 10px;
 }
 
 a {
@@ -68,8 +74,26 @@ h2, p {
 .flag {
     width: 20px;
     border-radius: 50%;
+    border: 2px solid white;
+    /* vertical-align: bottom; */
+    /* display: inline; */
+
 }
 
 h2.country {
     display: inline;
+    text-transform: uppercase;
+}
+
+.subhead {
+    width: 100%;
+    background-color: rgba(9, 48, 48, 0.275);
+    text-align: center;
+    margin-bottom: 5px;
+    padding-bottom: 3px;
+    padding-top: 3px;
+}
+
+p {
+    text-align: justify;
 }
