@@ -5,7 +5,7 @@ h1 {
     font-size: 90px;
     display: table-cell;
     vertical-align: middle;
-    color: rgb(70, 8, 8);
+    color: rgba(70, 8, 8, 0.75);
     font-family: 'Covered By Your Grace', cursive;
 }
 
