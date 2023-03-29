@@ -69,11 +69,25 @@ nav li {
 .right {
     float: right;
     width: 50%;
+    border: 1px solid #eedb00;
+    border-radius: 0 0 15px 15px;
     margin: 5px 5px 0;
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
 }
 
-table img {
+img {
     width: 100%;
+}
+
+.right img {
+    width: calc(100% / 3);
+}
+
+.right h3 {
+    width: 100%;
+    text-align: center;
 }
 
 #farGalaxy {
@@ -83,10 +97,10 @@ table img {
     letter-spacing: .2em;
 }
 
-table {
+/* table {
     border: 0.5px rgb(238, 219, 0) solid;
     border-radius: 0 0 15px 15px;
-}
+} */
 
 #bottomLeft {
     border-bottom-left-radius: 15px;
