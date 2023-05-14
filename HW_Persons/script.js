@@ -1,19 +1,28 @@
-const addItem = document.getElementById('addItem');
-const todoList = document.getElementById('todoList');
+const persons = [];
+const personsList = document.getElementById('personsList');
+const addPerson = document.getElementById('addPerson');
+//TODO click Add person => add unique person to array persons,
+// and add to ol with id='personsList'
+// click Get Stats => add stats after  <h2>Stats</h2>, average age, min age, max age
 
-addItem.onclick = addTodoItem;
+addPerson.addEventListener('click', () => addPersonToList());
 
-function addTodoItem() {
+function addPersonToList() {
     const li = document.createElement('li'); 
     li.style.paddingBottom = "5px"
-    const item = document.getElementById('item');
-    const text = item.value.trim();
-    let taskId = 0;
-    if (text) {
-        li.append(document.createTextNode(text));
-        todoList.appendChild(li);
-        taskId += 1;
-        li.id = `task${taskId}`;
+    const fields = document.querySelectorAll('input')
+    const person = {
+        id: fields[0].value.trim(),
+        firstName: fields[1].value.trim(),
+        lastName: fields[2].value.trim(),
+        age: +fields[3].value.trim()
+    }
+    if (person) {
+        persons.push(person);
+        li.append(document.createTextNode(`ID: ${person.id}, Full name: ${person.firstName.toUpperCase()} ${person.lastName.toUpperCase()}, Age: ${person.age}`));
+        personsList.appendChild(li);
+        // taskId += 1;
+        // li.id = `task${taskId}`;
         // delete button create v
         const divDel = document.createElement('div');
         divDel.id = `deletePointer${taskId}`
@@ -44,11 +53,8 @@ function addTodoItem() {
         // add event listener to delete button var 3
         divDel.onclick = () => {li.remove()} 
     }
-    item.value = '';
+    fields.forEach(field => {
+        field.value = ''
+    });
+    // fields.value = '';
 }
-
-
-
-
-// divDel.onclick = deleteTodoItem;
-
