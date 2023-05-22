@@ -13,10 +13,14 @@ body {
     align-items: center;
     /* border: 1px solid black; */
     width: 33vw;
-    height: 50vh;
+    height: 320px;
     background-color: #fff;
     border-radius: 10px;
     box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+}
+
+h1 {
+    text-align: center;
 }
 
 .inputGroup {

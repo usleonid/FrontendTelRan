@@ -1,0 +1,37 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+h1 {
+    text-align: center;
+}
+
+#contact-form input,
+#contact-form button {
+    margin: 10px 0;
+}
+
+#contact-list {
+    margin-top: 20px;
+}
+
+#contact-list table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#contact-list th,
+#contact-list td {
+    padding: 5px;
+    text-align: left;
+    border-bottom: 1px solid #ccc;
+}
+
+#contact-list th {
+    background-color: #f2f2f2;
+}
+
+#search-input {
+    width: 30vw;
+    padding: 5px;
+}

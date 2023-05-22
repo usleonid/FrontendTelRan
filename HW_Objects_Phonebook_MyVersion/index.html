@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <script src="./script.js" defer></script>
+    <title>Phone Book</title>
+</head>
+<body>
+    <div id="addContactContainer">
+        <h2>Add contact</h2>
+        <form action="" id="addContactForm">
+            <label for="contactName">Name:</label>
+            <input type="text" id="contactName">
+
+            <label for="contactEmail">Email:</label>
+            <input type="email" id="contactEmail">
+
+            <label for="contactPhone">Phone number:</label>
+            <input type="text" id="contactPhone">
+
+            <label for="contactCompany">Company:</label>
+            <input type="text" id="contactCompany">
+
+            <label for="contactAddress">Address:</label>
+            <input type="text" id="contactAddress" >
+
+            <button id="addContact">Add</button>
+        </form>
+        <input type="text" id="search-input" placeholder="Search">
+    </div>
+    <div id="contactListContainer">
+        <h2>Contact List</h2>
+        <ol id="contactsList">
+            
+        </ol>
+    </div>
+</body>
+</html>
