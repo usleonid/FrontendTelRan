@@ -1,12 +1,10 @@
 const phoneBook = {
     contactsList: [],
     addContact(contact) {
-        // if (contact.contactName || contact.email || contact.phone) {
             this.contactsList.push(contact)
             alert('Contact was added!')
-        // } 
     },
-    changeContact(updatedContact) {
+    changeContact(contactId) {
         const index = this.contactsList.findIndex(contact => {
             contact.contactName === updatedContact.contactName
         })
@@ -64,27 +62,31 @@ function addHandler(event) {
             house: $address.value.split(",")[2] ? $address.value.split(",")[2] : ""
         }
     };
-    contact.id = new Date().getTime();
-
-    phoneBook.addContact(contact);
     
-    // Очищаем значения полей формы
+    if (contact.contactName || contact.email || contact.phone) {
+        contact.id = new Date().getTime();
+        phoneBook.addContact(contact);
+    } else {
+        alert("Please enter at least one of the following parameters: Name, Email or Phone")
+    }
+    
+    // Reset all of the fields in contactForm
     $contactForm.reset();
 
-    // Обновляем список контактов
+    // Renew Contact list
     displayContacts();
     
 }
 
-// Функция для отображения контактов в списке
+// Display contacts in the contacts list of the interface of the webpage
 function displayContacts() {
-    // Очищаем таблицу контактов
+    // Reset current contacts list
     $contactsList.innerHTML = '';
 
-    // Получаем значение поля поиска
+    // Get the value of the search field
     const searchTerm = $searchInput.value.toLowerCase();
 
-    // Фильтруем контакты по значению поиска
+    // Filter contacts by the value of the search field
     const filteredContacts = phoneBook.contactsList.filter(contact =>
         contact.contactName.toLowerCase().includes(searchTerm) ||
         contact.email.toLowerCase().includes(searchTerm) ||
@@ -95,7 +97,7 @@ function displayContacts() {
         contact.address.house.includes(searchTerm)
     );
 
-    // Создаем строки таблицы для отображения контактов
+    // Create contacts points of the contacts list 
     filteredContacts.forEach(contact => {
         const li = document.createElement('li');
         let textContent = '';
