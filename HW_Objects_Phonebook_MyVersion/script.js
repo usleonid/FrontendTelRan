@@ -5,24 +5,19 @@ const phoneBook = {
             alert('Contact was added!')
     },
     changeContact(contactId) {
-        const index = this.contactsList.findIndex(contact => {
-            contact.contactName === updatedContact.contactName
-        })
-        if (index !== -1) {
-            this.contactsList[index] = updatedContact;
-        } else {
-            alert('Contact not found')
-        }
+        const contact = this.contactsList.find(contact => contact.id === contactId);
+
+        // Fill the fields of the form to change any of them
+        document.getElementById('contactName').value = contact.contactName;
+        document.getElementById('contactEmail').value = contact.email;
+        document.getElementById('contactPhone').value = contact.phone;
+        document.getElementById('contactCompany').value = contact.company;
+        contact.address.city || contact.address.street || contact.address.house ? 
+            document.getElementById('contactAddress').value = `${phoneBook.contactsList[0].address.city},${phoneBook.contactsList[0].address.street},${phoneBook.contactsList[0].address.house}` : 
+            document.getElementById('contactAddress').value = "";
     },
-    deleteContact(contactName) {
-        const index = this.contactsList.findIndex(contact => {
-            contact.contactName === contactName
-        });
-        if (index !== -1) {
-            this.contactsList.splice(index);
-        } else {
-            alert('Contact not found');
-        }
+    deleteContact(contactID) {
+        this.contactsList = this.contactsList.filter(contact => contact.id !== contactID);
     },
 }
 
@@ -64,7 +59,7 @@ function addHandler(event) {
     };
     
     if (contact.contactName || contact.email || contact.phone) {
-        contact.id = new Date().getTime();
+        contact.id = String(new Date().getTime());
         phoneBook.addContact(contact);
     } else {
         alert("Please enter at least one of the following parameters: Name, Email or Phone")
@@ -76,6 +71,23 @@ function addHandler(event) {
     // Renew Contact list
     displayContacts();
     
+}
+
+// Change contact button handler
+function changeHandler(contactID) {
+    phoneBook.changeContact(contactID);
+    document.querySelectorAll('input').forEach(input => {
+        input.addEventListener('input', () => {
+            deleteHandler(contactID)
+            displayContacts();
+        })
+    });
+} 
+
+// Delete contact button handler
+function deleteHandler(contactID) {
+    phoneBook.deleteContact(contactID);
+    displayContacts();
 }
 
 // Display contacts in the contacts list of the interface of the webpage
@@ -102,12 +114,12 @@ function displayContacts() {
         const li = document.createElement('li');
         let textContent = '';
         
-        textContent += contact.contactName ? `Contact name: ${contact.contactName}, ` : '';
-        textContent += contact.email ? `Email: ${contact.email}, ` : '';
-        textContent += contact.phone ? `Phone: ${contact.phone}, ` : '';
-        textContent += contact.company ? `Company: ${contact.company}, ` : '';
+        textContent += contact.contactName ? `Contact name: ${contact.contactName} | ` : '';
+        textContent += contact.email ? `Email: ${contact.email} | ` : '';
+        textContent += contact.phone ? `Phone: ${contact.phone} | ` : '';
+        textContent += contact.company ? `Company: ${contact.company} | ` : '';
         if (contact.address.city || contact.address.street || contact.address.house) {
-            const contactAddress = contact.address.city + contact.address.street + contact.address.house;
+            const contactAddress = `Address: ${contact.address.city}, ${contact.address.street}, ${contact.address.house}`;
             textContent += contactAddress;
         } else {
             textContent += '';
@@ -116,22 +128,11 @@ function displayContacts() {
         li.textContent = textContent;
         const spanBtns = document.createElement('span');
         spanBtns.innerHTML = `
-            <button id="changeContact" onclick="phoneBook.changeContact('${contact.contactName}')">Change details</button>
-            <button id="deleteContact" onclick="phoneBook.deleteContact('${contact.contactName}')">Delete</button>
+            <button id="changeContact" onclick="changeHandler('${contact.id}')">Change details</button>
+            <button id="deleteContact" onclick="deleteHandler('${contact.id}')">Delete</button>
         `;
         li.insertAdjacentElement("beforeend", spanBtns);
 
         $contactsList.append(li);
-
-        // row.innerHTML = `
-        //     <td>${contact.name}</td>
-        //     <td>${contact.email}</td>
-        //     <td>${contact.phone}</td>
-        //     <td>${contact.company}</td>
-        //     <td>${contact.address.city}, ${contact.address.street}, ${contact.address.house}</td>
-        //     <td><button onclick="editContact('${contact.name}')">Изменить</button>
-        //         <button onclick="deleteContact('${contact.name}')">Удалить</button></td>
-        // `;
-        // contactsTableBody.appendChild(row);
     });
 }
