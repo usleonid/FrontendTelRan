@@ -5,7 +5,7 @@ const $contactPhone = document.getElementById('contactPhone');
 const $company = document.getElementById('contactCompany');
 const $address = document.getElementById('contactAddress');
 const $contactsList = document.getElementById('contactsList');
-const $addContactBtn = document.getElementById('addContact');
+const $addContactBtn = document.getElementById('addContactButton');
 const $contactForm = document.getElementById('addContactForm');
 const $searchInput = document.getElementById('search-input');
 
@@ -141,9 +141,10 @@ function displayContacts() {
         
         li.innerHTML += textContent;
         const spanBtns = document.createElement('span');
+        spanBtns.setAttribute('id', 'spanBtns')
         spanBtns.innerHTML = `
-            <button id="changeContact" onclick="changeHandler('${contact.id}')">Change details</button>
-            <button id="deleteContact" onclick="deleteHandler('${contact.id}')">Delete</button>
+            <button id="changeContactButton" onclick="changeHandler('${contact.id}')">Change details</button>
+            <button id="deleteContactButton" onclick="deleteHandler('${contact.id}')">Delete</button>
         `;
         li.insertAdjacentElement("beforeend", spanBtns);
 
