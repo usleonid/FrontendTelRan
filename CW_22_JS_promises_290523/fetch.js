@@ -9,6 +9,8 @@ const baseUrl = 'https://jsonplaceholder.typicode.com/';
 const $userList = document.getElementById('userList');
 const $userList2 = document.getElementById('userList2');
 const $searchInput = document.getElementById('searchInput');
+const $personalData = document.getElementById('personalData')
+const $divListAndData = document.getElementById('usersBeforeFiltering')
 
 // let usersArr = [];
 
@@ -25,9 +27,42 @@ fetch(`${baseUrl}users`)
             )
             displayUsers(filteredUsers);
         })
-        
+
         users.forEach(user => {
-            liGeneration (user.name, $userList)
+            const $li = liGeneration (user.name, $userList);
+            // $li.addEventListener('click', () => console.log(user))
+            $li.addEventListener('click', (event) => {
+                document.querySelectorAll('.row ol li').forEach((element) => {
+                    element.style = ''
+                });
+                event.target.style.border = '1px solid black';
+                event.target.style.padding = '0px 15px 0 5px'
+                $personalData.innerHTML = ''
+                Object.entries(user).forEach(([key, value]) => {
+                    if (typeof value !== 'object') {
+                        $personalData.innerHTML += `<strong>${key}:</strong> ${value}</br>`;
+                    // } else {
+                    //     const $innerUl = document.createElement('ul')
+                    //     Object.entries(value).forEach(([keyV, valueV]) => {
+                    //         const $liInnerUl = document.createElement('li');
+                    //         $liInnerUl.innerHTML = `<strong>${keyV}:</strong> ${valueV}`;
+                    //         $innerUl.insertAdjacentElement('beforeend', $liInnerUl);
+                    //         // $innerUl.textContent += `<li><strong>${keyV}:</strong> ${valueV}</li>`;
+                    //     });
+                    //     $personalData.innerHTML += `<strong>${key}:</strong></br>${$innerUl}</br>`;
+                    }
+                });
+            });
+        })
+
+        $divListAndData.addEventListener('click', (event) => {
+            console.log(event);
+            if (event.target.nodeName.toLowerCase() !== 'li') {
+                document.querySelectorAll('.row ol li').forEach((element) => {
+                    element.style = ''
+                });
+                $personalData.innerHTML = 'Click to some user to see its personal data...'
+            }
         })
 
     })
@@ -48,4 +83,5 @@ function liGeneration (content, $listForInclude) {
     const li = document.createElement('li');
     li.textContent = content;
     $listForInclude.append(li);
+    return li;
 }
