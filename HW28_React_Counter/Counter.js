@@ -1,6 +1,7 @@
 const Counter = ( {initialValue, step} ) => {
 
     const [count, setCount] = React.useState(initialValue);
+    const [countInput, setCountInput] = React.useState(count);
 
     return (
         <div>
@@ -14,6 +15,8 @@ const Counter = ( {initialValue, step} ) => {
             <button onClick={() => setCount(0)}>
                 Reset
             </button>
+            <input type="number" onChange={(e) => setCountInput(+e.target.value)}></input>
+            <button onClick={() => setCount(countInput)}>Set Value</button>
         </div>
     );
 }
