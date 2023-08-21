@@ -1,17 +1,19 @@
 import React, { useEffect, useState } from 'react';
-import { base_url, period_month } from '../utils/constants';
+import { base_url, characters, period_month } from '../utils/constants';
+import { useParams } from 'react-router-dom';
 
-const AboutMe = ()=>{
+const AboutMe = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [hero, setHero] = useState<any>();
+  const {heroId = 'luke'} = useParams();
 
   useEffect(()=>{
     const hero1 = JSON.parse(localStorage.getItem('hero')!);
-    if(hero1 && ((Date.now() - hero1.time) < period_month)){
+    if(heroId && ((Date.now() - hero1.time) < period_month)){
       setIsLoading(false);
       setHero(hero1.payload);
     }else{
-      fetch(`${base_url}/v1/peoples/1`)
+      fetch(characters[heroId].url)
           .then((response) => response.json())
           .then((data) =>{
                   setIsLoading(false);

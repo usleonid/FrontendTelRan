@@ -8,19 +8,11 @@ import { SWContext } from './utils/context';
 
 function App() {
 
-  const [currentPage, setCurrentPage] = useState(navItems[0]);
-
   return (
     <div className='container-fluid'>
-      <SWContext.Provider value={
-        {
-          changePage: setCurrentPage
-        }
-      }>
         <Header />
-        <Main currentPage={currentPage} />
+        <Main />
         <Footer />
-      </SWContext.Provider>
     </div>
   );
 }

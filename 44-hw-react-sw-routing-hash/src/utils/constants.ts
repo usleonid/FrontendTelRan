@@ -7,12 +7,71 @@ import friend6 from "../Images/friend6.jpg";
 import friend7 from "../Images/friend7.jpg";
 import friend8 from "../Images/friend8.jpg";
 import friend9 from "../Images/friend9.jpg";
-import main from '../Images/main.jpg';
+import friend0 from '../Images/main.jpg';
 import style from '../css_modules/borderRound.module.css';
-import { Item } from "./types";
+import { Characters, Item } from "./types";
+
+export const base_url = 'http://sw-info-api.herokuapp.com';
+export const version = '/v1';
+
+
+export const characters: Characters = {
+    luke: {
+        name: "Luke Skywalker",
+        img: friend0,
+        url: `${base_url+version}/peoples/1`
+    },
+    c3po:{
+        name: "C-3PO",
+        img: friend2,
+        url: `${base_url+version}/peoples/2`
+    },
+    r2d2:{
+        name: "R2-D2",
+        img: friend1,
+        url: `${base_url+version}/peoples/3`
+    },
+    leia:{
+        name: "Leia Organa",
+        img: friend6,
+        url: `${base_url+version}/peoples/5`
+    },
+    obi_wan:{
+        name: "Obi-Wan Kenobi",
+        img: friend8,
+        url: `${base_url+version}/peoples/10`
+    },
+    chewbacca:{
+        name: "Chewbacca",
+        img: friend4,
+        url: `${base_url+version}/peoples/13`
+    },
+    han_solo:{
+        name: "Han Solo",
+        img: friend5,
+        url: `${base_url+version}/peoples/14`
+    },
+    yoda:{
+        name: "Yoda",
+        img: friend9,
+        url: `${base_url+version}/peoples/0`
+    },
+    ewok:{
+        name: "Wicket Systri Warrick",
+        img: friend3,
+        url: `${base_url+version}/peoples/30`
+    },
+    falcon:{
+        name: "Millennium Falcon",
+        img: friend7,
+        url: `${base_url+version}/transports/10`
+    }
+};
+
+
 
 export const styleForFriend = style;
-export const heroMain = main;
+export const heroMain = friend0;
 export const friends = [
     friend1,
     friend2,
@@ -24,7 +83,6 @@ export const friends = [
     friend8,
     friend9,
 ];
-export const base_url = 'https://sw-info-api.herokuapp.com';
 
 export const navItems: Item[] = [
     {title: "Home", route: "home"},

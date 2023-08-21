@@ -8,27 +8,17 @@ import { Item } from "../utils/types";
 import { Route, Routes } from "react-router-dom";
 import ErrorPage from "./ErrorPage";
 
-const Main = ({currentPage} :{currentPage:Item}) => {
+const Main = () => {
     return (
         <Routes>
-            <Route path={`/`} element={<Home />} />
-            <Route path={`/${navItems[0].route}`} element={<Home />} />
-            <Route path={`/${navItems[1].route}`} element={<AboutMe />} />
+            {[`/`, `/${navItems[0].route}`].map(p => <Route key={p} path={p} element={<Home />} /> )}
+            {[`/${navItems[1].route}`, `/${navItems[1].route}/:heroId`]
+            .map(p =>  <Route key={p} path={p} element={<AboutMe />} />)}          
             <Route path={`/${navItems[2].route}`} element={<StarWars />} />
             <Route path={`/${navItems[3].route}`} element={<Contact />} />
-            <Route path="*" element={<ErrorPage />} />
+            <Route path="*" element={<ErrorPage/>}/>
         </Routes>
     )
-    // switch (currentPage.title) {
-    //     case navItems[1].title:
-    //         return <AboutMe />
-    //     case navItems[2].title:
-    //         return <StarWars />
-    //     case navItems[3].title:
-    //         return <Contact />
-    //     default:
-    //         return <Home />
-    // }
 };
 
 export default Main;
