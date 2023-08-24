@@ -5,7 +5,7 @@ import { UserContext } from '../utils/userContext'
 
 
 const Stats = () => {
-    const { name, followers, following } = useContext(UserContext);
+    const { name, followers, following, changeFollowers, changeFollowing } = useContext(UserContext);
     return (
         <div className='user-stats'>
             <div>
@@ -13,8 +13,28 @@ const Stats = () => {
                 {name}
             </div>
             <div className='stats'>
-                <div>Followers: {followers}</div>
-                <div>Following: {following}</div>
+                <div
+                    onClick={
+                        () => changeFollowers(1)
+                    }
+                    onContextMenu={
+                        e => {
+                            e.preventDefault();
+                            changeFollowers(-1)
+                        }
+                    }
+                >Followers: {followers}</div>
+                <div
+                    onClick={
+                        () => changeFollowing(1)
+                    }
+                    onContextMenu={
+                        e => {
+                            e.preventDefault();
+                            changeFollowing(-1)
+                        }
+                    }
+                >Following: {following}</div>
             </div>
         </div>
     )

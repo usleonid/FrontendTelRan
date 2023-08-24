@@ -11,10 +11,36 @@ function App() {
   const [followers, setFollowers] = useState(0);
   const [following, setFollowing] = useState(0);
 
+  const changeName = (name: string) => {
+    if (name) {
+      setName(name);
+    }
+  }
+
+  const changeAvatar = (url: string) => {
+    if (url) {
+      setAvatar(url);
+    }
+  }
+
+  const changeFollowers = (sum: number) => {
+    setFollowers(prevState => {
+      const res = prevState + sum;
+      return res < 0 ? 0 : res
+    })
+  }
+
+  const changeFollowing = (sum: number) => {
+    setFollowing(prevState => {
+      const res = prevState + sum;
+      return res < 0 ? 0 : res
+    })
+  }
+
   return (
     <div className='app'>
       <UserContext.Provider value={{
-        name, avatar, followers, following
+        name, avatar, followers, following, changeName, changeAvatar, changeFollowers, changeFollowing
       }}>
         <Navigation />
         <Body />
