@@ -38,12 +38,13 @@
 // }
 
 import React, { useState } from 'react'
+import './App.css'
 import Balance from './components/Balance';
 import Operation from './components/Operation';
 
 const App = () => {
-  const {balance, setBalance} = useState(0);
-  const {quote, setQuote} = useState('Winter is coming...');
+  const [balance, setBalance] = useState(0);
+  const [quote, setQuote] = useState('Winter is coming...');
 
   const deposit = sum => {
     setBalance(prevBalance => prevBalance + sum)

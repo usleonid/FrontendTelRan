@@ -51,7 +51,7 @@
 import React, { useState } from 'react'
 
 const Operation = ({fetchQuote, withdraw, deposit}) => {
-  const {sum, setSum} = useState();
+  const [sum, setSum] = useState(1);
 
   return (
     <div>
