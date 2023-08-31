@@ -1,15 +1,19 @@
-import React, { useEffect, useState } from 'react';
-import { base_url, characters, defaultHero, period_month } from '../utils/constants';
-import { useParams } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { base_url, characters, navItems, period_month } from '../utils/constants';
+import ErrorPage from './ErrorPage';
+import { withHeroId } from '../hoc/withHeroId';
 
-const AboutMe = () => {
+interface Props {
+  heroId: string;
+}
+
+const AboutMe = ({heroId}: Props)=>{
   const [isLoading, setIsLoading] = useState(true);
   const [hero, setHero] = useState<any>();
-  const {heroId = defaultHero} = useParams();
 
-  useEffect(()=>{
+  useEffect(() => {
     const hero1 = JSON.parse(localStorage.getItem(heroId)!);
-    if(heroId && ((Date.now() - hero1.time) < period_month)){
+    if(hero1 && ((Date.now() - hero1.time) < period_month)){
       setIsLoading(false);
       setHero(hero1.payload);
     }else{
@@ -27,6 +31,10 @@ const AboutMe = () => {
           );
     }
   },[heroId])
+
+  if (!characters[heroId]) {
+    return (<ErrorPage />)
+  }
   
   if (isLoading) {
       return <div className="spinner-border text-primary"></div>;
@@ -47,5 +55,5 @@ const AboutMe = () => {
   
 }
 
-export default AboutMe;
+export default withHeroId(navItems[1].route)(AboutMe);
 
