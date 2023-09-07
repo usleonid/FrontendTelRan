@@ -1,5 +1,5 @@
 import { bankReducer } from "../reducers/bankReducers";
-import { createStore } from "../redux/createStore";
+import { legacy_createStore as createStore } from "@reduxjs/toolkit";
 
 const initialState = {
     balance: 0,

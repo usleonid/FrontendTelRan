@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { store } from "../configureStore/store";
-import { deposit, withdraw } from "../actions/accountActions";
+import { deposit, putQuote, withdraw } from "../actions/accountActions";
 
 export default class Operation extends Component {
   constructor(props) {
@@ -9,6 +9,13 @@ export default class Operation extends Component {
       sum: 0,
     };
   }
+
+  handleClickGetQuote = async () => {
+    const response = await fetch('https://api.gameofthronesquotes.xyz/v1/random');
+    const data = await response.json();
+    store.dispatch(putQuote(data.sentence));
+  }
+
   render() {
     return (
       <div className="container-fluid">
@@ -35,7 +42,7 @@ export default class Operation extends Component {
         </div>
         <div className="d-flex justify-content-center pt-3">
           <button
-            onClick={this.props.fetchQuote}
+            onClick={this.handleClickGetQuote}
             className="btn btn-info btn-lg"
           >
             Get Quote

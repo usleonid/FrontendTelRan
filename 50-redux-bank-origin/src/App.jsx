@@ -1,17 +1,16 @@
-import React, { Component } from 'react'
+import React from 'react'
 import './App.css'
 import Balance from './components/Balance'
 import Operation from './components/Operation'
 
 
-export default class App extends Component {
-
-  render() {
+const App = () => {
     return (
       <div>
         <Balance />
         <Operation />
       </div>
     )
-  }
 }
+
+export default App;
