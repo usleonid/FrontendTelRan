@@ -17,3 +17,5 @@ export interface Action {
     type: string,
     payload: any
 }
+
+export type StatsType = 'followers' | 'following';

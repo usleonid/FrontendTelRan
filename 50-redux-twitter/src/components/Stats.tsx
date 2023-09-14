@@ -1,10 +1,14 @@
-import Avatar from './Avatar'
+	
+import { useDispatch, useSelector } from 'react-redux'
 import { State, UserStats } from '../utils/types'
-import { useSelector } from 'react-redux';
+import Avatar from './Avatar'
+import { changeStats } from '../actions/statsAction'
 
 const Stats = () => {
-    const {followers, following} = useSelector<State, UserStats>(state => state.stats)
-    const name = useSelector<State, string>(state => state.user.name)
+    const { followers, following } = useSelector<State, UserStats>(state => state.stats)
+    const name = useSelector<State, string>(state => state.user.name);
+    const dispatch = useDispatch();
+
     return (
         <div className='user-stats'>
             <div>
@@ -13,25 +17,26 @@ const Stats = () => {
             </div>
             <div className='stats'>
                 <div
-                onClick={
-                    () => {}
-                }
-                onContextMenu={
-                    e => {
-                        e.preventDefault();
-
+                    onClick={
+                        () => dispatch(changeStats('followers', 1))
                     }
-                }
+                    onContextMenu={
+                        e => {
+                            e.preventDefault();
+                            dispatch(changeStats('followers', -1));
+                        }
+                    }
                 >Followers: {followers}</div>
                 <div
-                onClick={
-                    () => {}
-                }
-                onContextMenu={
-                    e => {
-
+                    onClick={
+                        () => dispatch(changeStats('following', 1))
                     }
-                }
+                    onContextMenu={
+                        e => {
+                            e.preventDefault()
+                            dispatch(changeStats('following', -1));
+                        }
+                    }
                 >Following: {following}</div>
             </div>
         </div>

@@ -1,9 +1,8 @@
+	
 import React from 'react';
-import { useSelector } from 'react-redux';
-import { useDispatch } from 'react-redux';
-import { changeAvatar, changeName } from '../actions/userActions';
+import { useDispatch, useSelector } from 'react-redux';
 import { State, User } from '../utils/types';
-
+import { changeAvatar, changeName } from '../actions/userActions';
 
 interface Props {
 
