@@ -1,0 +1,66 @@
+h1 {
+    color: blue;
+    font-size: 48px;
+
+}
+
+p {
+    font-size: 24px;
+}
+
+img {
+    width: 480px;
+    height: 360px;
+    border-radius: 30%;
+    border: 3px solid black;
+    
+}
+
+#asian {
+    border-color: red;
+}
+
+table, th, td {
+    border: 1px solid;
+  }
+
+table {
+    border-collapse: collapse 3px;
+  }
+
+th {
+    background-color: blue;
+    color: white;
+    height: 25px;
+    vertical-align: center;
+    padding: 5px;
+  }
+
+td {
+    padding: 7px;
+    text-align: left;
+  }
+
+tr.three {
+    background-color: red;
+    color: white;
+}
+
+tr.four {
+    background-color: brown;
+    color: white;
+}
+
+tr.five {
+    background-color: darkorange;
+    color: white;
+}
+
+tr.six {
+    background-color: black;
+    color: white;
+}
+
+a {
+    text-decoration: none;
+}
