@@ -2,7 +2,11 @@ import React from 'react'
 import ProfileData from './ProfileData'
 import UpdateUser from './UpdateUser'
 
-const Profile = () => {
+interface Props {
+  token: string
+}
+
+const Profile = ({token}: Props) => {
   const handleClickLogout = () => {
     //TODO Logout
     alert('logout')

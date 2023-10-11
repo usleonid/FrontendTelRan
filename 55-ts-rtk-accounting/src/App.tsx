@@ -4,11 +4,28 @@ import Guest from './components/Guest';
 import Profile from './components/Profile';
 
 function App() {
-  let token = ''
+  let token = 'asdasd'
   return (
     <Routes>
-      <Route path='/' element={<Guest />}/>
-      <Route path='/profile' element={<Profile />}/>
+      {token ? (
+          <>
+            <Route path="/" element={<Profile token={token} />} />
+            <Route path="/profile" element={<Profile token={token} />} />
+          </>
+      ) : (
+        <>
+          <Route path="/" element={<Guest />} />
+          <Route path="/profile" element={<Guest />} />
+        </>
+      )}
+      {/* {token ? (
+        <>
+          <Route path="/" element={<Navigate to="/profile" />} />
+          <Route path="/profile" element={<Profile token={token}/>} />
+        </>
+      ) : (
+        <Route path="/" element={<Guest />} />
+      )} */}
     </Routes>
   );
 }

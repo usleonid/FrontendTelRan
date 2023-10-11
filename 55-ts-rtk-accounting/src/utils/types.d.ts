@@ -1,5 +1,5 @@
 export enum UpdateMode {
     default = '',
-    editUser = 'edit',
+    editUser = 'editUser',
     changePassword = 'changePassword'
 }
