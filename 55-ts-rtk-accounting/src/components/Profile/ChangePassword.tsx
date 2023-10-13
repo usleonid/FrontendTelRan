@@ -1,4 +1,6 @@
 import React, { useState } from 'react'
+import { useAppDispatch } from '../../app/hooks';
+import { changePassword } from '../../features/api/accountActions';
 
 interface Props {
     close: () => void
@@ -8,6 +10,7 @@ const ChangePassword = ({close}: Props) => {
   const [oldPassword, setOldPassword] = useState('');
   const [newPassword, setNewPassword] = useState('');
   const [repeatNewPassword, setRepeatNewPassword] = useState('')
+  const dispatch = useAppDispatch();
   
   const handleClickClear = () => {
     setOldPassword('');
@@ -18,8 +21,7 @@ const ChangePassword = ({close}: Props) => {
 const handleClickSave = () => {
     // TODO 
     if (newPassword === repeatNewPassword) {
-        alert('save and close');
-        
+       dispatch(changePassword(newPassword));
     } else {
         alert('new password and repeat pass are different')
     }
@@ -30,19 +32,19 @@ const handleClickSave = () => {
     <div>
         <label>Enter old password:
             <input 
-                onChange={e => setOldPassword(e.target.value.trim)}
+                onChange={e => setOldPassword(e.target.value)}
                 type="password"
                 value={oldPassword} />
         </label>
         <label>Enter new password:
             <input 
-                onChange={e => setNewPassword(e.target.value.trim)}
+                onChange={e => setNewPassword(e.target.value)}
                 type="password"
                 value={newPassword} />
         </label>
         <label>Repeat new password:
             <input 
-                onChange={e => setRepeatNewPassword(e.target.value.trim)}
+                onChange={e => setRepeatNewPassword(e.target.value)}
                 type="password"
                 value={repeatNewPassword} 
             />

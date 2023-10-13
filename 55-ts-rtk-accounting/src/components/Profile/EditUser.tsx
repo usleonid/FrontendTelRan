@@ -1,4 +1,6 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
+import { useAppDispatch } from '../../app/hooks';
+import { updateUser } from '../../features/api/accountActions';
 
 interface Props {
     close: () => void
@@ -7,6 +9,7 @@ interface Props {
 const EditUser = ({close}: Props) => {
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
+    const dispatch = useAppDispatch();
     
     const handleClickClear = () => {
         setFirstName('');
@@ -14,8 +17,7 @@ const EditUser = ({close}: Props) => {
     }
 
     const handleClickSave = () => {
-        // TODO 
-        alert('save and close');
+        dispatch(updateUser(firstName, lastName));
         close();
     }
 
@@ -23,14 +25,14 @@ const EditUser = ({close}: Props) => {
     <div>
         <label>First name:
             <input 
-                onChange={e => setFirstName(e.target.value.trim)}
+                onChange={e => setFirstName(e.target.value)}
                 type="text"
                 value={firstName} 
             />
         </label>
         <label>Last name:
             <input 
-                onChange={e => setLastName(e.target.value.trim)} 
+                onChange={e => setLastName(e.target.value)} 
                 type="text"
                 value={lastName} 
             />

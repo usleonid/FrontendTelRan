@@ -1,15 +1,20 @@
-import React from 'react'
+import { useAppDispatch } from '../../app/hooks';
+import { deleteToken } from '../../features/slices/tokenSlice';
+import { deleteUser } from '../../features/slices/userSlice';
 import ProfileData from './ProfileData'
 import UpdateUser from './UpdateUser'
+import { useNavigate } from "react-router-dom";
 
 interface Props {
   token: string
 }
 
 const Profile = ({token}: Props) => {
+
+  const dispatch = useAppDispatch();
   const handleClickLogout = () => {
-    //TODO Logout
-    alert('logout')
+    dispatch(deleteToken());
+    dispatch(deleteUser())
   }
   return (
     <div>

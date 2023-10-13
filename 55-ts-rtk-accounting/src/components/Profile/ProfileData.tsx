@@ -1,15 +1,16 @@
 import React from 'react'
+import { useAppSelector } from '../../app/hooks'
 
 const ProfileData = () => {
-  //TODO user data
+  const user = useAppSelector(state => state.user)
   
     return (
     <div>
-        <p>First Name: ???</p>
-        <p>Last Name: ???</p>
-        <p>Login: ???</p>
+        <p>First Name: {user.firstName}</p>
+        <p>Last Name: {user.lastName}</p>
+        <p>Login: {user.login}</p>
         <ul>
-            <li>User</li>
+            {user.roles.map(r => <li key={r}>{r}</li>)}
         </ul>
     </div>
   )
