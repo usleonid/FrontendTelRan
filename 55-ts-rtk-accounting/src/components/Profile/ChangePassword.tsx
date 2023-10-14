@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import { useAppDispatch } from '../../app/hooks';
 import { changePassword } from '../../features/api/accountActions';
+import { extractPasswordFromToken } from '../../utils/constants';
+import { store } from '../../app/store';
 
 interface Props {
     close: () => void
@@ -19,11 +21,10 @@ const ChangePassword = ({close}: Props) => {
 }
 
 const handleClickSave = () => {
-    // TODO 
-    if (newPassword === repeatNewPassword) {
+    if (newPassword === repeatNewPassword && oldPassword === extractPasswordFromToken(store.getState().token)) {
        dispatch(changePassword(newPassword));
     } else {
-        alert('new password and repeat pass are different')
+        alert('new password and repeat pass are different or old password is incorrect')
     }
     close();
 }

@@ -11,7 +11,7 @@ export const store = configureStore({
   preloadedState
 });
 
-store.subscribe(() => localStorage.setItem('state', JSON.stringify(store.getState)))
+store.subscribe(() => localStorage.setItem('state', JSON.stringify(store.getState())))
 
 export type AppDispatch = typeof store.dispatch;
 export type RootState = ReturnType<typeof store.getState>;
